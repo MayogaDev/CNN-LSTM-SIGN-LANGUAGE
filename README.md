@@ -20,6 +20,3 @@ Este es un modelo de una red neuronal que traduce Lengua de Señas Peruana (LSP)
 
 ## Observaciones
 La información que está en Data puede que no funcione para versiones diferentes de Python a la que usé en el video (3.10.0). Así que se recomienda volver a generar los keypoints para una versión diferente.
-
-## Video de la explicación del código:
-https://youtu.be/3EK0TxfoAMk 
