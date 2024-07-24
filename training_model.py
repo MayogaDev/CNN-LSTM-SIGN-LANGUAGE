@@ -66,8 +66,10 @@ def training_model_with_plots(model_path, model_num:int, epochs=50):
 
     X = np.array(sequences)
     y = to_categorical(labels).astype(int)
+    
+    num_classes = y.shape[1]  # Número de clases a partir de las etiquetas
 
-    model = get_model(int(model_num), len(word_ids))
+    model = get_model(int(model_num), num_classes)
     history = model.fit(X, y, epochs=epochs, validation_split=0.2)
     model.summary()
     model.save(model_path)
