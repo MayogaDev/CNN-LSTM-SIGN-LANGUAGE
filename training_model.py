@@ -45,6 +45,9 @@ def plot_metrics(metrics, model_nums):
     precision_metrics = []
     recall_metrics = []
     f1_metrics = []
+    mcc_metrics = []
+    balanced_accuracy_metrics = []
+    kappa_metrics = []
     
     # Extraer solo las métricas que no son listas (exceptuando la especificidad)
     for metric_set in metrics:
@@ -52,14 +55,20 @@ def plot_metrics(metrics, model_nums):
         precision_metrics.append(metric_set[1])
         recall_metrics.append(metric_set[2])
         f1_metrics.append(metric_set[3])
+        mcc_metrics.append(metric_set[5])
+        balanced_accuracy_metrics.append(metric_set[6])
+        kappa_metrics.append(metric_set[7])
     
     # Convertir a numpy arrays para procesamiento
     accuracy_metrics = np.array(accuracy_metrics)
     precision_metrics = np.array(precision_metrics)
     recall_metrics = np.array(recall_metrics)
     f1_metrics = np.array(f1_metrics)
+    mcc_metrics = np.array(mcc_metrics)
+    balanced_accuracy_metrics = np.array(balanced_accuracy_metrics)
+    kappa_metrics = np.array(kappa_metrics)
     
-    avg_metrics = np.array([np.mean(accuracy_metrics), np.mean(precision_metrics), np.mean(recall_metrics), np.mean(f1_metrics)])
+    avg_metrics = np.array([np.mean(accuracy_metrics), np.mean(precision_metrics), np.mean(recall_metrics), np.mean(f1_metrics), np.mean(mcc_metrics), np.mean(balanced_accuracy_metrics), np.mean(kappa_metrics)])
     
     # Plot de las métricas
     plt.figure(figsize=(12, 6))
@@ -70,19 +79,26 @@ def plot_metrics(metrics, model_nums):
     plt.bar(x - 0.5 * width, precision_metrics, width, label='Precision')
     plt.bar(x + 0.5 * width, recall_metrics, width, label='Recall')
     plt.bar(x + 1.5 * width, f1_metrics, width, label='F1-score')
+    plt.bar(x + 2.5 * width, mcc_metrics, width, label='MCC')
+    plt.bar(x + 3.5 * width, balanced_accuracy_metrics, width, label='Balanced Accuracy')
+    plt.bar(x + 4.5 * width, kappa_metrics, width, label='Cohen\'s Kappa')
+
     
     plt.xlabel('Fold')
     plt.ylabel('Metric Value')
     plt.title('Performance metric analysis for each fold')
     plt.xticks(np.append(x, x[-1] + 1), list(model_nums) + ['Average'])
     plt.legend()
-    
+    """
     # Add average bars
     plt.bar(x[-1] + 1 - 1.5 * width, avg_metrics[0], width, color='blue', alpha=0.5)
     plt.bar(x[-1] + 1 - 0.5 * width, avg_metrics[1], width, color='orange', alpha=0.5)
     plt.bar(x[-1] + 1 + 0.5 * width, avg_metrics[2], width, color='green', alpha=0.5)
     plt.bar(x[-1] + 1 + 1.5 * width, avg_metrics[3], width, color='red', alpha=0.5)
-    
+    plt.bar(x[-1] + 1 + 2.5 * width, avg_metrics[4], width, color='purple', alpha=0.5)
+    plt.bar(x[-1] + 1 + 3.5 * width, avg_metrics[5], width, color='brown', alpha=0.5)
+    plt.bar(x[-1] + 1 + 4.5 * width, avg_metrics[6], width, color='pink', alpha=0.5)
+    """
     plt.savefig(os.path.join(GRAPHIC_PATH, "performance_metrics.png"))
     plt.show()
 

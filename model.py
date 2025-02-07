@@ -116,23 +116,23 @@ def get_model(max_length_frames, output_length: int):
 
     # Primera capa LSTM bidireccional
     # Bidirectional LSTM para capturar patrones temporales en ambas direcciones de la secuencia
-    model.add(Bidirectional(LSTM(128, return_sequences=True, activation='tanh', 
+    model.add(Bidirectional(LSTM(64, return_sequences=True, activation='tanh', 
                                  input_shape=(max_length_frames, LENGTH_KEYPOINTS), 
                                  kernel_regularizer=l2(0.001))))
     model.add(BatchNormalization())  # Normalización por lotes para estabilizar y acelerar el entrenamiento
-    model.add(Dropout(0.3))  # Dropout para reducir el sobreajuste al apagar aleatoriamente neuronas
+    model.add(Dropout(0.4))  # Dropout para reducir el sobreajuste al apagar aleatoriamente neuronas
 
     # Segunda capa LSTM
     # LSTM para extraer características temporales más complejas
-    model.add(LSTM(128, return_sequences=False, activation='tanh', kernel_regularizer=l2(0.001)))
+    model.add(LSTM(64, return_sequences=False, activation='tanh', kernel_regularizer=l2(0.001)))
     model.add(BatchNormalization())  # Normalización para estabilizar el entrenamiento
-    model.add(Dropout(0.3))  # Dropout para evitar el sobreajuste
+    model.add(Dropout(0.4))  # Dropout para evitar el sobreajuste
 
     # Capa densa con 128 neuronas
     # Capa completamente conectada para aprender combinaciones de las características extraídas
-    model.add(Dense(128, activation='relu', kernel_regularizer=l2(0.001)))
+    model.add(Dense(64, activation='relu', kernel_regularizer=l2(0.001)))
     model.add(BatchNormalization())  # Normalización para mejorar la estabilidad del modelo
-    model.add(Dropout(0.3))  # Dropout para mejorar la generalización
+    model.add(Dropout(0.4))  # Dropout para mejorar la generalización
 
     # Capa densa con 64 neuronas
     # Capa completamente conectada adicional para reducir dimensionalidad antes de la salida

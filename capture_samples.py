@@ -76,7 +76,7 @@ def count_generated_folders(path):
     return len(folders)
 
 if __name__ == "__main__":
-    word_name = "cancelar"
+    word_name = "click derecho" # Palabra a capturar
     word_path = os.path.join(ROOT_PATH, FRAME_ACTIONS_PATH, word_name)
     # capture_samples(word_path)
 
