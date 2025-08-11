@@ -8,6 +8,11 @@ from constants import *
 from text_to_speech import text_to_speech
 
     
+# Crea la carpeta 'captures_real_time' si no existe
+capture_folder = "captures_real_time"
+if not os.path.exists(capture_folder):
+    os.makedirs(capture_folder)
+
 def evaluate_model(src=None, threshold=0.6):
     count_frame = 0
     kp_sequence, sentence = [], []
@@ -26,6 +31,13 @@ def evaluate_model(src=None, threshold=0.6):
             if there_hand(results):
                 kp_sequence.append(extract_keypoints(results))
                 count_frame += 1
+            
+                # Dibuja los puntos de Mediapipe sobre el fotograma
+                draw_keypoints(frame, results)
+
+                # Guarda la imagen cuando la mano se detecta
+                frame_filename = os.path.join(capture_folder, f"frame_{count_frame}.png")
+                cv2.imwrite(frame_filename, frame)
             
             elif count_frame >= MIN_LENGTH_FRAMES:
                 if count_frame <= 7:

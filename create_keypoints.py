@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # word_ids = [word for word in os.listdir(os.path.join(ROOT_PATH, FRAME_ACTIONS_PATH))]
     
     # GENERAR PARA UNA PALABRA O CONJUNTO
-    word_ids = ["click derecho"]
+    word_ids = ["pantalla","regresar","seleccionar","software"]
     
     for word_id in word_ids:
         hdf_path = os.path.join(KEYPOINTS_PATH, f"{word_id}.h5")

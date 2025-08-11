@@ -76,10 +76,9 @@ def count_generated_folders(path):
     return len(folders)
 
 if __name__ == "__main__":
-    word_name = "click derecho" # Palabra a capturar
+    word_name = "software" # Palabra a capturar
     word_path = os.path.join(ROOT_PATH, FRAME_ACTIONS_PATH, word_name)
-    # capture_samples(word_path)
-
+    capture_samples(word_path)
     # Llamada a la función para contar las carpetas generadas
     num_folders = count_generated_folders(word_path)
     print(f"Carpetas generadas en '{word_name}': {num_folders}")

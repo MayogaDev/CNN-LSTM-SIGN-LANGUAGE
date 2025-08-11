@@ -9,6 +9,7 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout, LeakyReLU
 from keras.regularizers import l2
 from constants import LENGTH_KEYPOINTS
+import kerastuner as kt
 
 """def get_model(max_length_frames, output_length):
     # Definir la entrada del modelo
@@ -147,4 +148,33 @@ def get_model(max_length_frames, output_length: int):
     optimizer = Adam(learning_rate=0.001)
     model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 
+    return model
+
+# Nueva función para la optimización de hiperparámetros con Keras Tuner
+def build_model_with_hp_tuning(hp):
+    max_length_frames = hp.Int('max_length_frames', min_value=50, max_value=200, step=50)
+    output_length = hp.Int('output_length', min_value=10, max_value=50, step=10)
+    
+    model = tf.keras.Sequential()
+    model.add(Bidirectional(LSTM(units=hp.Int('lstm_units', min_value=64, max_value=128, step=32),
+                                 return_sequences=True, activation='tanh',
+                                 input_shape=(max_length_frames, LENGTH_KEYPOINTS),
+                                 kernel_regularizer=l2(0.001))))
+    model.add(BatchNormalization())
+    model.add(Dropout(hp.Float('dropout_1', min_value=0.2, max_value=0.5, step=0.1)))
+    
+    model.add(LSTM(units=hp.Int('lstm_units_2', min_value=64, max_value=128, step=32),
+                   return_sequences=False, activation='tanh', kernel_regularizer=l2(0.001)))
+    model.add(BatchNormalization())
+    model.add(Dropout(hp.Float('dropout_2', min_value=0.2, max_value=0.5, step=0.1)))
+    
+    model.add(Dense(units=hp.Int('dense_units', min_value=64, max_value=128, step=32), activation='relu'))
+    model.add(BatchNormalization())
+    model.add(Dropout(hp.Float('dropout_3', min_value=0.2, max_value=0.5, step=0.1)))
+    
+    model.add(Dense(output_length, activation='softmax'))
+
+    model.compile(optimizer=Adam(learning_rate=hp.Float('learning_rate', min_value=1e-5, max_value=1e-1, sampling='LOG')),
+                  loss='categorical_crossentropy', metrics=['accuracy'])
+    
     return model

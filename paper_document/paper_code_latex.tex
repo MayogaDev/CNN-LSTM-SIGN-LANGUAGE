@@ -1,0 +1,1062 @@
+%% 
+%% Copyright 2007-2024 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.3 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{algorithm}
+%\usepackage[numbers]{natbib}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{booktabs} % Para líneas más limpias
+\usepackage{array}    % Para alinear verticalmente
+
+\setlength{\tabcolsep}{6pt}
+\usepackage{graphicx}% Ajusta el espacio entre columnas
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsmath package provides various useful equation environments.
+\usepackage{amsmath}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+\journal{Intelligent Systems with Applications}
+
+\begin{document}
+
+\begin{frontmatter}
+
+% Title, authors and addresses
+%MODIFICADO
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%            addressline={}, 
+%%            city={},
+%%            postcode={}, 
+%%            state={},
+%%            country={}}
+%% \fntext[label3]{}
+
+%\title{Development of an LSTM Model for Real-time Automatic Translation of Peruvian Sign Language} %% Article title
+
+\title{Real-time recognition of computer terminology signs for Peruvian Sign Language based on MediaPipe keypoint detection and LSTM neural networks} %% Article title
+
+\author[label1]{Jharold Alonso Mayorga Villena}
+\ead{jmayorgav@unsa.edu.pe}
+
+\author[label1]{Andrea López-Condori}
+\ead{alopezco@unsa.edu.pe}
+
+\author[label1]{Roxana Flores-Quispe}
+\ead{rfloresqu@unsa.edu.pe}
+
+\author[label1]{Javier Quispe-Rojas}
+\ead{jquisperoj@unsa.edu.pe}
+
+\author[label1]{Yuber Velazco-Paredes}
+\ead{yvelazco@unsa.edu.pe}
+
+\affiliation[label1]{organization={Universidad Nacional de San Agustín de Arequipa},% Department and Organization
+            addressline={}, 
+            city={Arequipa},
+            postcode={04001}, 
+            state={Arequipa},
+            country={Peru}}
+
+%% Abstract
+\begin{abstract}
+The social nature of people means that we communicate through different languages, however, people with disabilities need to use sign languages to communicate with each other, creating communication barriers in education, work, and daily life with the rest of society. Added to this is the limited availability of technological tools for real-time Sign Language translation, which makes full inclusion difficult. To address this issue, this research proposes a deep learning model based on Long Short-Term Memory (LSTM) networks for real-time recognition and translation of the complete word belonging to computer terminology alphabetic of Peruvian Sign Language (LSP) gestures.
+The model leverages MediaPipe for hand-tracking and feature extraction, while LSTM processes the temporal dependencies of gestures to improve recognition accuracy. The dataset used for training and evaluation was constructed based on the official LSP book, ensuring representativeness and linguistic validity. Experimental results demonstrated a high recognition accuracy of 97.5\%, highlighting the precision and reliability of the approach. These findings validate the proposed method as an effective solution to enhance accessibility and promote social inclusion for the deaf community, addressing a critical gap in existing technological solutions for LSP translation.
+
+
+
+\end{abstract}
+
+%%Graphical abstract
+\begin{graphicalabstract}
+\begin{figure}[H]
+\centering%% For centre alignment of image.
+\includegraphics[width=0.9\columnwidth]{Arquitectura del Proyecto_2.PNG}
+%% Use \caption command for figure caption and label.
+\label{fig1}
+\end{figure}
+\end{graphicalabstract}
+
+%%Research highlights
+\begin{highlights}
+    \item A new model of Real-time recognition of computer terminology signs for Peruvian Sign Language (PSL) using MediaPipe keypoint detection and neural LSTM networks was implemented.
+    \item A custom PSL dataset based on the official Peruvian Sign Language guide was developed ensuring linguistic validity.
+    \item It Implemented a hybrid AI approach - MediaPipe for accurate manual tracking of a signal's set of gestures and an LSTM for temporal sequence processing, which achieves the complete interpretation of each term.
+    \item An accuracy of 97.5\% was achieved, demonstrating the effectiveness of the proposed model.
+    \item The proposed method allows the translation of gestures in real-time, improving accessibility for the deaf community in Peru.
+    \item The proposed method outperforms traditional CNN-based and hybrid models for sign Language recognition in low-resource settings.
+
+\end{highlights}
+
+%% Keywords
+\begin{keyword}
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+Automatic translation, Peruvian Sign Language, LSTM networks, Gesture recognition, Artificial intelligence
+\end{keyword}
+
+\end{frontmatter}
+
+%% Add \usepackage{lineno} before \begin{document} and uncomment 
+%% following line to enable line numbers
+%% \linenumbers
+
+%% main text
+%%
+
+%% Use \section commands to start a section
+\section{Introduction}
+%ok
+In recent years, the number of people with disabilities and minorities including deaf people has increased bringing them serious consequences over time due to the social marginalization  \cite{Attia}.
+
+%MODIFICADO
+Although the social integration of the deaf community has improved over time, communication barriers persist. Deaf individuals primarily rely on gestures involving their hands, mouth movements, body postures, and facial expressions to convey letters, numbers, or entire phrases, and Sign language serves as their primary means of communication,  \cite{Arezoo},  with approximately 71 million people worldwide using it as their main interaction method \cite{siddique23}. However, communication difficulties with the hearing population remain prevalent due to the widespread lack of sign language proficiency \cite{arellano22}, which is often not common to the general public.
+So, the main barrier to improving their education quality is the lack of educational materials available in their language \cite{gamarra20}. % ok
+
+%ok,,, falta dfuente the official
+Despite the numerous sign languages in the world, their number remains significantly lower than the spoken languages \cite{zeshan06}.So, the Peruvian Sign Language (PSL) was recently recognized as the official aboriginal sign language in Perú \cite{MIMP}. According to the 2017 Peruvian census, approximately 230,000 individuals with speech and hearing impairments use PSL \citet{portocarrero23}.
+%MODIFICADO and ok
+On the other hand, Technological advancements in recent years have facilitated the development of sophisticated applications for sign language recognition. MediaPipe, for instance, enables the construction of perception pipelines capable of processing sensory data \cite{lugaresi19}. Its hand-tracking capabilities are crucial for precise gesture recognition, a fundamental component of automatic sign language translation \cite{zhang20}. Additionally, its facial detection technology allows real-time analysis of emotions and facial expressions \cite{cai21}, and full-body tracking has proven valuable in healthcare and sports applications by monitoring body posture and movement \cite{mediapipe21}.
+
+%MODIFICADO and ok
+In addition, the sequential data analysis using long short-term memory (LSTM) networks has significantly enhanced. While MediaPipe extracts hand and body movements, LSTMs process and retain sequential gestures, enabling their translation into text or speech. This approach has been widely applied in recognizing American Sign Language (ASL), Indian Sign Language, and Arabic Sign Language \cite{Kumari24, Mali23}. Moreover, LSTM models effectively mitigate challenges associated with noisy data \cite{Mali23}.  Other research has used LSTMs with convolutional neural networks (CNNs) to improve language-specific recognition, allowing models to adapt to the unique gestural and cultural characteristics of regional sign languages, including PSL \cite{Kumari24}.
+%MODIFICADO ok
+Despite these technological advancements, research on PSL remains limited. Existing studies have primarily focused on grammatical structure \cite{madrid18} and the development of sign language dictionaries (PUCP-DGI) \cite{rodriguez15}. Computational approaches have mainly addressed isolated alphabet recognition \cite{lazo19, mejia20, berru18, nurena20}, neglecting the complexity of continuous communication. Furthermore, prior research has predominantly emphasized written language recognition, despite the increasing availability of technological tools for individuals with hearing disabilities.
+
+%MODIFICADO and ok
+To reduce this gap, this study proposes a novel tool for real-time recognition of Peruvian Sign Language based on MediaPipe keypoint detection and LSTM
+neural networks. So, while the LSTMs enable precise interpretation of dynamic gestures, the MediaPipe facilitates real-time hand tracking. This integration results in a robust and accurate system for automatic PSL recognition to enhance communication accessibility for the deaf and hard-of-hearing community.
+
+%MODIFICADO and ok
+The remainder of this paper is structured as follows. Section 2 reviews related work. Section \ref{sec:methodology} details the proposed method. Section \ref{sec:evaluation} outlines the experimental setup and evaluation metrics. Section \ref{sec:results} presents and analyzes the experimental results, including performance assessments, comparisons, and failure cases. Finally, Section \ref{sec:conclusions} summarizes the findings and discusses potential directions for future research.
+
+
+%% Labels are used to cross-reference an item using \ref command.
+%%Section text. See Subsection \ref{subsec1}.
+
+\section{Related Work}
+%MODIFICADO
+Research on sign language recognition has progressed significantly, with various methodologies proposed to enhance accuracy and efficiency. In particular, deep learning approaches such as Convolutional Neural Networks (CNNs) and Long Short-Term Memory (LSTM) networks have demonstrated notable success across different datasets and sign languages. The integration of advanced tools like MediaPipe has further improved recognition performance.
+
+% CNN-based Approaches
+%MODIFICADO-bien citado
+Several studies have leveraged CNNs for sign language recognition. For example, \cite{Yasmin} introduced a hybrid model that combines conventional image processing with extracted hand landmarks, employing a multi-headed CNN instead of a standard single-channel CNN for ASL recognition. This model was trained on the "Finger Spelling, A" dataset, which excludes the letters 'j' and 'z' due to their motion-based nature, and achieved an impressive test accuracy of 98.981\%.
+%MODIFICADO-citado bien
+Similarly, \cite{Arooj24} developed a CNN-based framework for recognizing Pakistan Sign Language (PSL) gestures. Utilizing a Kinect motion sensor to capture Urdu alphabet gestures, their model demonstrated high precision with an accuracy of 98.74\%.
+%MODIFICADO-citaod bien
+In another study, \cite{Lu23} proposed a system that integrates multimodal data, including skeletal structure, joint angles, and finger curvature, processed through a CNN-BiLSTM model. Their dataset consisted of 32 Japanese Sign Language gestures (27 static and 5 dynamic), and results showed that incorporating multiple data sources enhanced accuracy from 68.34\% to 84.13\%.
+%MODIFICADO-bien citado
+Additionally, \cite{Vashisth23} developed a CNN model for ISL gesture recognition using a self-compiled dataset. By leveraging HSV color-space images and optimizing hyperparameters, their model achieved a 99\% accuracy rate.
+%MODIFICADO
+% LSTM-based Approaches
+%MODIFICADO
+ Other research used LSTM-based methodologies that excel in capturing dynamic gestures, producing strong results in recognizing sequential movements. Their ability to integrate spatial and temporal data effectively underscores their high performance in handling complex sign language patterns.
+%MODIFICADO-cita bien
+For instance, \cite{Rao} proposed a vision-based ASL recognition system that employs an LSTM model to predict sign gestures from motion sequences using the MediaPipe Holistic pipeline, which integrates posture, face, and hand tracking—the system achieved an accuracy between 85\% and 90\% during real-time evaluation, using a dataset split into 90\%- for training and 10\% for testing.
+%MODIFICADO-citaod bien
+Likewise, \cite{Shamitha} introduced a real-time ISL recognition system utilizing an LSTM trained on a dataset containing 24 dynamic gestures. The researchers employed a pre-trained MediaPipe Holistic model to extract features, leading to an accuracy of 97\%.
+%MODIFICADO-citado bien
+Furthermore, \cite{Paul24} examined three models—an improved ResNet-based CNN, an LSTM, and a GRU—on custom ASL datasets. The first dataset included 26 signs, while the second focused on three fundamental symbols for communication. Using the Adam optimizer, the first dataset achieved an accuracy of 89.07\%. In contrast, in the second dataset, LSTM worked better than GRU reaching a 94.3\% accuracy, while GRU only managed 79.3\%.
+%MODIFICADO-citado bien
+Moreover, \cite{Kothadiya22} developed a model that combines LSTM and GRU networks to classify ISL gestures from isolated video frames, achieving around 97\%  of accuracy in 11 different signs.
+%MODIFICADO-citaod bien
+Another study by \cite{Sundar} presented an ASL alphabet recognition system integrating MediaPipe Hands for hand and finger tracking, alongside an LSTM model for training. The system effectively classified most letters, though minor misclassifications occurred for 'R' and 'V.' Evaluated on 26 ASL alphabet signs, it reached a 99\% accuracy.
+%MODIFICADO-citado bien
+Additionally, \cite{Abdulhamied} developed a real-time ASL recognition system that combines MediaPipe with an LSTM network to identify hand gestures. Their model, trained on an ASL dataset, achieved an accuracy of 99.35\%, significantly enhancing communication accessibility for the deaf and mute community.
+%MODIFICADO.citado bien
+% Deep Learning-based Approaches
+
+Deep learning models have been widely explored in sign language recognition research. \cite{Siddique23} introduced an automatic Bangla Sign Language (BSL) recognition system implemented on a Jetson Nano edge device. Three models were evaluated: Detectron2, EfficientDet-D0 (TensorFlow-based), and YOLOv7 (PyTorch-based). Detectron2 demonstrated the highest accuracy, attaining a mean Average Precision (mAP) of 94.92\%, and an IoU threshold of 0.5. However, YOLOv7 exhibited performance variations across different classes, leading the researchers to select YOLOv7 Tiny for deployment due to its optimal trade-off between computational efficiency and real-time processing capabilities.
+
+%MODIFICADO-citado bien
+In another study, \cite{Attia} improved sign language recognition by utilizing YOLOv5x with attention mechanisms. Tested on the MU HandImages ASL and OkkhorNama: BdSL datasets, their model surpassed previous benchmarks, achieving accuracies of 98.9\% and 97.6\%, respectively.
+
+% Conclusion
+%MODIFICADO
+CNN-based techniques have proven particularly effective in identifying static hand gestures with high precision, significantly contributing to sign language recognition. However, despite substantial advancements in recognizing sign languages such as ASL, PSL, and ISL, research focusing on Peruvian Sign Language (PSL) remains scarce. The absence of dedicated PSL studies highlights a crucial gap in this field. As mentioned in the introduction, the lack of advanced real-time PSL translation tools underscores the necessity for developing sophisticated models tailored to this language. Enhancing these technologies would promote greater inclusivity for the deaf community in Peru.
+
+
+\section{Proposed method}
+\label{sec:methodology}
+%This section delves into the proposed system for Peruvian Sign Language recognition, detailing about the select dataset, preprocessing images and deep learning models implemented.
+%\subsection{Challenges and Contextual Considerations}
+%modificado 2/02/25
+Figure \ref{fig1} shows the workflow for Real-Time Gesture Recognition and Translation of the Peruvian Sign Language based on MediaPipe Keypoints and LSTM Networks, which is divided into three main phases. First, the system captures hand movements and extracts keypoints using MediaPipe, which are processed and structured for analysis. Finally, an LSTM-based model interprets the sequences to recognize and translate the gestures in real time.
+
+\subsection{Data Acquisition}
+%ok
+One of the main challenges encountered in this study was the absence of a publicly available and adequate database specifically designed for the Peruvian Sign Language (LSP).
+
+%ok
+Therefore, considering the unique cultural and linguistic context of LSP, a new LSP gestures database was built, which considered regional linguistic diversity, and avoided relying solely on databases or systems developed for other sign languages, such as ASL (American Sign Language).
+
+Likewise, the included words come from a guide titled  \textit{"Guía para el aprendizaje de la lengua de señas peruana, vocabulario básico"},  published in 2015 by the Institutional Repository of the  Ministry of Education of Peru (MINEDU), \cite{Minedu}, which is organized in 24 chapters \footnote{The full guide can be accessed at: \href{https://repositorio.minedu.gob.pe/handle/20.500.12799/5545}{https://repositorio.minedu.gob.pe/handle/20.500.12799/5545}}. In the last chapter \textit{"Señas de Informática"}; 101 Peruvian signs are considered. From this chapter, 20 signs were identified in the  \textit{Computer terminology}  because they are representative signs used in the field of  \textit{Computer Science}, which were selected for our new database.
+
+\begin{figure}[H]
+\centering%% For centre alignment of image.
+\includegraphics[width=1\columnwidth]{Arquitectura del Proyecto_2.PNG}
+%% Use \caption command for figure caption and label.
+\caption{General Diagram of the Proposal}
+\label{fig1}
+\end{figure}
+
+%ok
+Then, a custom data acquisition process was designed to build the LSP gestures database. For this purpose, a camera was installed to capture video frames of a person performing gestures with their hands and faces for each word.
+%ok
+
+Figure \ref{fig:data_acquisition_flow} illustrates the real-time process of capturing and analyzing video frames for hand gesture detection using the \texttt{MediaPipe Holistic} model, which was designed to collect iteratively high-quality data samples for training robust sign language recognition models.
+
+%The data acquisition process follows a structured workflow that ensures efficient and accurate capture of gesture-related data.
+%ok
+
+The process chooses a target gesture, and the camera is activated to capture real-time video frames. The system remains idle until an input signal is detected. Then the \texttt{MediaPipe Holistic} model is activated to analyze the captured frames. 
+
+This model identifies and tracks keypoints to the hand, face, and body, enabling precise gesture recognition. The core of the workflow is a capture loop that evaluates the visibility of the hand in each frame. If a hand is detected, the corresponding frame is appended to a temporary list of captured frames. In cases where no hand is detected, the system assesses the elapsed time since the last detection. Based on this evaluation, the system either continues capturing frames or terminates the process if a predefined timeout is reached.
+
+%ok
+When the system determines enough frames captured, these are saved in a designated folder with a unique identifier, the camera resources are released, and the user is notified of the successful completion of the data acquisition phase.
+
+%ok
+This iterative and systematic approach ensures that the data acquisition process will be efficient and reliable, providing high-quality samples for sign language recognition and related applications.
+%ok
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Modelo_Grafica_4.jpg}
+    \caption{Data Acquisition Flowchart.}
+    \label{fig:data_acquisition_flow}
+\end{figure}
+
+\subsection{Image Preprocessing}
+%ook
+In this stage the key features were extracted from the captured frames of the LSP gestures database, ensuring the dataset is correctly structured and optimized for model training. This process involves multiple tasks, including getting individual frames,  keypoint extraction, sequence length adjustment, and temporal data structuring. Each step was designed to simplify and encode the visual data into a format that preserves the gestures' spatial and temporal dynamics while reducing the input data's complexity. By focusing on the keypoints of the face, hands, and body, the preprocessing pipeline enhances the model's ability to recognize and interpret sign language effectively.
+%ok
+\begin{enumerate}
+    \item \textbf{Getting Individual Frame}: 
+     The preprocessing starts iterating frames to gather the necessary visual data for further processing. Figure ~\ref{fig:frame_projection}, shows how the frames are initially projected into 3D space, where spatial information is embedded. This 3D representation is transformed into a 2D space to focus on detecting and analyzing facial and hand landmarks, providing detailed information on the spatiotemporal relationships of the captured data.
+  
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{frame_collection_3d_and_2d.jpg}
+    \caption{Frames projected into 3D space and transformed into 2D space.}
+    \label{fig:frame_projection}
+    \end{figure}
+
+   %ok
+    \item \textbf{Keypoint Extraction}: For each frame corresponding to a sign, MediaPipe's \textit{Holistic} model was used to extract keypoints, which represent coordinates of joints and reference points on the body, hands, and face making them essential for recognizing sign language, rather than processing entire images.Figure~\ref{fig:mediapipe_detection} shows this process. The bounding boxes highlight the detected areas, and the normalized coordinate system ensures accurate spatial representation for further analysis.
+ 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\columnwidth]{Modelo_Grafica_5.jpg}
+    \caption{Landmark detection with box bounding on face and hands using Mediapipe Holistic.}
+    \label{fig:mediapipe_detection}
+    \end{figure}
+
+      % \item \textbf{Sequence Length Adjustment}: 
+   % Since the number of frames varies for each sample due to differences in video duration or signing speed, the sequence length was standardized to 7, 12, or 18 frames per sample. Depending on the total number of frames in a given sample, the sequence was adjusted to one of these predefined lengths. This adjustment is vital to ensure consistency across the dataset when feeding it into the recognition model. If a sample contained more frames than the set limits, only the most relevant frames were selected. Conversely, if a sample had fewer frames, the sequence was interpolated or padded to meet the required length.
+%ok
+    \item \textbf{Structuring the Keypoints}:  The keypoints must be structured in temporal sequences, according to the order of the frames of the movement of each sign. Thus, these sequences encode the key point position and capture the temporal progression of each gesture over time.
+
+%ok
+The algorithm \ref{alg:keypoints} outlines this process. First, the image is loaded and preprocessed, then the Mediapipe library is used to detect keypoints from each frame, which are normalized and stored as temporal sequences to preserve the chronological order. These sequences are then used for spatial analysis in the XY plane and visualized in 3D coordinates.
+
+\begin{algorithm}[hbt!]
+\caption{Keypoints $\rightarrow$ 3D Visualization and Temporal Structuring}\label{alg:keypoints}
+\begin{algorithmic}[1]
+\Require Image $I$
+\Ensure 3D visualization and structured temporal sequences of keypoints $K$
+
+\State $I \gets \text{LoadImage}(\textit{path})$
+\State $I \gets \text{FlipVertically}(I)$
+\State $(W, H) \gets \text{GetDimensions}(I)$
+\State $K \gets \emptyset$ \Comment{Initialize keypoints list}
+\State $\text{InitializeMediapipe}()$
+
+\While{$\text{HasFrame}(I)$}
+    \State $P \gets \text{DetectKeypoints}(\text{Frame})$
+    \State $K \gets K \cup \text{Normalize}(P)$
+\EndWhile
+
+\State $\text{Mesh2D} \gets \text{GeneratePlane}(Z=0, W, H)$
+\State $\text{Plane3D} \gets \text{ProjectImage}(I, Z=1)$
+
+\ForAll{$(x, y, z) \in K$}
+    \State $\text{DrawArrow}((x, y, 1) \rightarrow (x, y, 0))$
+    \State $\text{AddText}((x, y))$
+\EndFor
+
+\State $\text{ConfigureAxes}()$
+\State $\text{DisplayGraph}()$
+
+\Comment{Temporal Structuring of Keypoints}
+\State $\text{Sequences} \gets \emptyset$ \Comment{Initialize temporal sequences}
+\ForAll{Frame $t$ in $I$}  % Cambio aquí
+    \State $S_t \gets K_t$ \Comment{Extract keypoints for frame $t$}
+    \State $\text{Sequences} \gets \text{Sequences} \cup S_t$ \Comment{Add sequence for frame $t$}
+\EndFor
+
+\State $\text{Project2D}(K, XY)$ \Comment{Project keypoints onto XY plane for spatial analysis}
+
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+%ok
+Figure~\ref{fig:landmark_detection_2d} shows the facial and hand landmarks detection in 2D coordinates whose projections were extracted and structured into temporal sequences, which are essential for analyzing movement patterns and capturing gesture progression over time. Furthermore, the projection facilitates spatial analysis in the XY plane.
+
+ \begin{figure}[H]
+\centering
+\includegraphics[width=0.6\columnwidth]{landmark_coordinates.jpg}
+\caption{Visualization of facial and hand landmark detection with 2D coordinates projected on the XY plane.}
+\label{fig:landmark_detection_2d}
+\end{figure}
+
+%ok
+\item \textbf{Storage of Preprocessed Data}: Figure~\ref{fig:keypoint_transformation} shows how the keypoints are extracted from a coordinate matrix and flattened into a vector representation in each frame. These frame vectors are stored in a structured DataFrame matrix, capturing the keypoints' spatial positions and temporal relationships for further analysis and model training. The data is stored in the \textit{HDF5} format, which is highly efficient for large, hierarchical datasets, such as multiple sequences of keypoints. It facilitated quick access and retrieval of data during model training and evaluation phases.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\columnwidth]{keypoint_matrix_to_vector.jpg}
+\caption{Transformation from a coordinate matrix to a vector representation for each frame.}
+\label{fig:keypoint_transformation}
+\end{figure}
+
+ The algorithm \ref{alg:keypoints_insertion} describes the process of inserting keypoints sequences into a DataFrame. For each frame in the sequence, it stores the sample ID, frame number, and keypoints data in the DataFrame. Finally, the algorithm saves the completed DataFrame to an HDF5 file.
+
+\begin{algorithm}[hbt!]
+\caption{Insert Keypoints Sequences into DataFrame}\label{alg:keypoints_insertion}
+\begin{algorithmic}[1]
+\Require Data $D$
+\Ensure DataFrame with keypoints sequences
+
+\State $df \gets \emptyset$ \Comment{Initialize an empty DataFrame}
+\For{each sample $s$ in $D$}
+    \State $K_s \gets \text{GetKeypoints}(s)$ \Comment{Obtain the keypoints sequence}
+    \For{each frame $f$ in $K_s$}
+        \State $D_f \gets \{ \text{sample\_id} = s, \text{frame} = f, \text{keypoints} = K_s[f] \}$ \Comment{Insert data into frame}
+        \State $df \gets df \cup \text{ToDataFrame}(D_f)$ \Comment{Add frame to DataFrame}
+    \EndFor
+\EndFor
+\State \Return $df$
+\State $\text{SaveToHDF5}(df, \text{path})$ \Comment{Save DataFrame to HDF5 file}
+\end{algorithmic}
+\end{algorithm}   
+\end{enumerate}
+
+%%% aqui 16-01-2025
+
+%his preprocessing pipeline ensures that the data is in an optimal format
+%for machine learning, focusing on the keypoints that define the gestures
+%and significantly improving the model’s ability to accurately recognize sign
+%language.
+
+%The diagram in Figure~\ref{fig:lstm_architecture} illustrates the architecture of the proposed LSTM (Long Short-Term Memory) neural network model designed for sequential data classification. The process starts with an input file (data.h5), which contains the temporal sequences to be analyzed.
+%aqui 24-1-25
+
+\subsection{Proposed LSMT Architecture}
+
+%%flata preambulo corto...
+%A LSTM neural network has been used to.....
+%whose structure is described below.
+
+%ok
+%modificado-se agrego preambulo
+A neural network based on Long Short-Term Memory (LSTM) was proposed in our method to process and classify sequential gesture data. This model effectively captures temporal dependencies, enhancing recognition accuracy \cite{Kumari24, Mali23}. Also, LSTMs have been widely used in sign language recognition due to their ability to learn and remember sequential gestures, facilitating translation into text or speech \cite{Kumari24, Mali23}.
+
+%ok
+In our proposed design, the first layer is a bidirectional LSTM with 64 neurons, which captures temporal dependencies in both forward and backward directions, ensuring a comprehensive understanding of the sequential patterns with Batch Normalization to stabilize the learning process by reducing internal covariate shifts, followed by a Dropout layer to prevent overfitting by randomly deactivating certain neurons during training.
+
+%ok
+The second layer is a unidirectional LSTM with 64 neurons, which focuses on refining the feature representations learned from the previous layer. Like the first layer, it is followed by Batch Normalization and Dropout, ensuring robust and efficient learning. This sequential combination of bidirectional and unidirectional LSTM layers is designed to extract deep temporal features while maintaining generalization capabilities.
+
+%ok
+The output from these LSTM layers passes through two Dense layers. The first Dense layer contains 64 neurons and is followed by Batch Normalization and Dropout, ensuring consistent learning and reducing overfitting. However, the second Dense layer contains 64 neurons without Batch Normalization or Dropout. This allows for the processing of the extracted features without additional constraints.
+
+%Falta referencia de ADAM
+Finally, a SoftMax activation function is used in the Dense output layer, which converts the results into probabilities suitable for classification tasks. The model was trained using the Adam optimizer, known for its efficiency and adaptive learning capabilities in deep learning architectures \cite{Mienye24}.
+%Once trained, the model is saved as a .keras file (model.keras), allowing future reuse for predictions.
+
+ Figure~\ref{fig:lstm_architecture} shows the LSTM architecture that balances advanced temporal feature extraction with robust optimization techniques to achieve high accuracy and generalization in sequential data classification tasks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{LSTM_architecture_.jpg}
+    \caption{Architecture of the proposed LSTM neural network model. 
+    %The design includes a combination of bidirectional and unidirectional LSTM layers, followed by Dense layers and optimized with Adam.
+    }
+    \label{fig:lstm_architecture}
+\end{figure}
+
+\subsection{Real-time Recognition Process}
+
+The proposed method recognizes the computer terminology signs of LSP in real time. it involves two main stages: the recognition and temporary storage of keypoints, and the analysis and classification using an LSTM model.
+
+\begin{itemize}
+\item \textbf{Recognition and Temporary Storage of Keypoints:} As shown in Figure~\ref{fig:temporal_dataframe}, when the camera is activated Mediapipe detects the keypoints of the hand in each captured frame which are transformed from a coordinate matrix into vectors stored in a temporary Dataframe, which preserves the temporal order of the frames which captures the progression of the gesture over time, enabling the analysis of movement patterns with dynamic features.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Modelo_Grafica_6_.jpg}
+    \caption{A Dataframe stores the progression of the gesture over time}
+    \label{fig:temporal_dataframe}
+\end{figure}
+
+%ok
+\item \textbf{Keypoint Evaluation Using LSTM:} Using the proposed LSTM model a Dataframe is evaluated, See Figure~\ref{fig:lstm_evaluation}. Obtaining the degree of similarity between the input keypoints and the patterns stored in the HDF5 format to classify the input sign of the LSP.
+
+%The temporary dataframe, stored in the \textit{HDF5 (.h5)} format, is highly efficient for managing large datasets, facilitating quick access and retrieval during the evaluation phase.
+
+
+
+This approach leverages the temporal relationships captured in the Dataframe, allowing the model to recognize gestures based on dynamic motion patterns and spatial information. By matching the input keypoints with the stored patterns. The system satisfactorily identifies the Peruvian sign that is being evaluated.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Modelo_Grafica_7_.jpg}
+    \caption{Evaluation of keypoints using the proposed LSTM model}
+    \label{fig:lstm_evaluation}
+\end{figure}
+
+\end{itemize}
+
+\subsection{Evaluation metrics}
+\label{sec:evaluation}
+For this work, Accuracy (Acc), Precision (P), Recall (R), F1-score, Logarithmic Loss (Log Loss), Matthews Correlation Coefficient (MCC), Balanced Accuracy (BAcc), Cohen’s Kappa ($\kappa$), Specificity (Spec), and Area Under the Receiver Operating Characteristic Curve (AUC-ROC) were employed as evaluation metrics. Eqs. (\ref{eq1})–(\ref{eq10}) are used to compute these measures, respectively ( \cite{Powers11, Good52, Matthews75, Brodersen10, Cohen60, Altman94, Hanley82}).  
+
+Accuracy (\ref{eq1}) measures the proportion of correctly classified instances over the total number of cases.  
+
+\begin{equation}
+\text{Acc} = \frac{TP + TN}{TP + TN + FP + FN} \times 100\%
+\label{eq1}
+\end{equation}
+
+Precision (\ref{eq2}) evaluates how many of the predicted positive cases are truly positive, while Recall (\ref{eq3}) assesses the model’s ability to detect actual positive instances.  
+
+\begin{equation}
+P = \frac{TP}{TP + FP} \times 100\%
+\label{eq2}
+\end{equation}
+
+\begin{equation}
+R = \frac{TP}{TP + FN} \times 100\%
+\label{eq3}
+\end{equation}
+
+The F1-score (\ref{eq4}) balances Precision and Recall, providing a single measure of model effectiveness.  
+
+\begin{equation}
+F1 = 2 \times \frac{P \times R}{P + R} \times 100\%
+\label{eq4}
+\end{equation}
+
+Logarithmic Loss (\ref{eq5}) penalizes incorrect predictions based on their confidence, making it useful for probabilistic models.  
+
+\begin{equation}
+\text{Log Loss} = -\frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log(p_i) + (1 - y_i) \log(1 - p_i) \right]
+\label{eq5}
+\end{equation}
+
+Matthews Correlation Coefficient (\ref{eq6}) provides a balanced performance evaluation by considering all four elements of the confusion matrix.  
+
+\begin{equation}
+\text{MCC} = \frac{TP \times TN - FP \times FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}}
+\label{eq6}
+\end{equation}
+
+Balanced Accuracy (\ref{eq7}) accounts for imbalanced datasets by averaging recall for both classes.  
+
+\begin{equation}
+\text{BAcc} = \frac{1}{2} \left( \frac{TP}{TP + FN} + \frac{TN}{TN + FP} \right)
+\label{eq7}
+\end{equation}
+
+Cohen’s Kappa (\ref{eq8}) quantifies agreement between predicted and actual labels, adjusting for chance.  
+
+\begin{equation}
+\kappa = \frac{p_o - p_e}{1 - p_e}
+\label{eq8}
+\end{equation}
+
+Specificity (\ref{eq9}) measures the proportion of correctly identified negative cases, complementing Recall.  
+
+\begin{equation}
+\text{Spec} = \frac{TN}{TN + FP} \times 100\%
+\label{eq9}
+\end{equation}
+
+Finally, AUC-ROC (\ref{eq10}) evaluates the model’s ability to distinguish between classes across different thresholds, with higher values indicating better performance.  
+
+\begin{equation}
+\text{AUC-ROC} = \int_0^1 \text{TPR} \, d\text{FPR}
+\label{eq10}
+\end{equation}
+
+
+
+
+\section{Result Analysis}
+\label{sec:results}
+
+%This section presents the performance metrics, visualization of recognized gestures, and insights into the experimental outcomes.
+%%here 23-2-25
+\subsection{Real-time Recognition}
+The proposed method can identify hand, face, and body movements in real-time. So, different kinds of gestures were detected.
+
+%, some samples of this process are shown in figures \ref{fig:gesture1},  \ref{fig:gesture2},   \ref{fig:gesture3} and \ref{fig:gesture4}.
+%ok
+\begin{itemize}
+\item Static nature of the gesture:
+The gesture in Figure \ref{fig:gesture1} shows a static hand position with all fingers closed. The detected keypoints align precisely with the intended gesture, showing precise tracking of finger and palm positions and demonstrating its ability to process non-dynamic signals with high fidelity.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{static_gesture.png}
+    \caption{Visualization of PSL gesture recognition using MediaPipe keypoints.}
+    \label{fig:gesture1}
+\end{figure}
+
+\item Dynamic gesture:
+Figure \ref{fig:gesture2} captures a dynamic gesture transitioning from an open hand to forming a circle with the thumb and index finger. The MediaPipe framework accurately tracks the sequence of movements, capturing wrist rotations and finger interactions. This dynamic recognition capability emphasizes the system's effectiveness in processing gestures involving continuous motion, ensuring meaningful translations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{dynamic_gesture.png}
+    \caption{Example of detected keypoints during gesture translation.}
+    \label{fig:gesture2}
+\end{figure}
+
+\item Complex gestures:
+In Figure \ref{fig:gesture3}, the subject performs a layered hand gesture with multiple finger configurations. The system successfully identifies and differentiates between the stages of the movement, capturing both spatial and temporal information. This underscores the robustness of the model in recognizing complex gestures requiring fine-grained analysis of hand articulation and body context.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{complex_gesture.png}
+    \caption{Accurate detection of hand movements in complex gestures.}
+    \label{fig:gesture3}
+\end{figure}
+
+\item Expression gesture:
+Figure \ref{fig:gesture4} illustrates a combined hand and facial expression gesture. Integrating facial landmarks with hand keypoints enhances the system's accuracy, capturing emotional subtleties alongside physical movements.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{expression_gesture.png}
+    \caption{Comprehensive recognition of gestures involving both hand and facial expressions.}
+    \label{fig:gesture4}
+\end{figure}
+
+\end{itemize}
+
+%\textbf{Key Observations}:
+%ok
+After these results, it's possible to ensure.
+\begin{enumerate}
+    \item The system accurately detected and tracked hand movements, including intricate gestures involving finger positioning.
+    \item The recognition of Facial expressions and body postures were effectively integrated, enhancing the translation's accuracy.
+    \item The real-time recognition capability demonstrated minimal latency, ensuring a seamless user experience.
+\end{enumerate}
+
+%En Aqui va la imagen de canva con su respectiva seccion 
+\section{Database Samples}
+\label{sec:database_samples}
+%ok
+This section shows sample sequences from the LSP dataset used for gesture recognition, where each sign contains gestures represented as a sequence of frames, providing spatial and temporal information necessary for accurate gesture classification.
+%ok 
+The dataset is composed of 20 dynamic words, with each word having 100 dynamic samples. As a result, the total number of samples in the dataset amounts to 2000.
+%ok
+Figure \ref{fig:dataset_samples} shows several samples of Peruvian sign language gestures, highlighting how each gesture is captured across multiple frames. Each sequence includes a variety of movements such as hand positions, finger movements, and body posture, which together convey specific meanings in sign language.
+%ok
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{sample_dataset_lsp.png}
+    \caption{Sample sequences from our LSP dataset showcasing various sign gesture sequences.}
+    \label{fig:dataset_samples}
+\end{figure}
+
+%ok
+Each sign gesture is used as an input into the model for training and recognition providing it with the necessary information to differentiate between various gestures. For example, a gesture like "Open" involves a hand-opening motion, while more complex gestures like "Archive" involve multiple hand and finger configurations.
+
+%The dataset's ability to capture these details ensures that the model can recognize both static and dynamic gestures, which is crucial for accurate sign language interpretation.
+
+\subsection{Training and Validation Performance}
+
+Figure \ref{fig:training_curves} illustrates the progression of training, validation loss, and accuracy, across five different folds during the 100 training epochs. The left-side plots show the loss function evolution, where the training loss follows a smooth downward trajectory, indicating that the model is effectively learning from the data. However, the validation loss exhibits fluctuations, especially in the later epochs, which may suggest overfitting or sensitivity to variations in the validation set. These oscillations indicate that while the model can minimize training loss effectively, it may struggle to generalize certain patterns in the dataset.
+
+On the right side, the accuracy plots show the evolution of both training and validation accuracy. The training accuracy consistently increases and converges towards 1.0, confirming that the model successfully adapts to the training data. However, the validation accuracy, although following a similar trend, displays occasional sharp declines, particularly in certain folds. These variations suggest that while the model achieves high accuracy on the training set, its generalization to unseen data may be inconsistent. This behavior is often observed in highly parameterized models or trained with an insufficiently diverse data set, which can lead to misclassifications in specific cases.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{training_curves.png}
+    \caption{Evolution of training and validation loss, along with accuracy trends, across multiple folds during 100 training epochs. The left-side graphs represent the loss curves, while the right-side graphs depict accuracy over epochs.}
+    \label{fig:training_curves}
+\end{figure}
+
+
+
+\subsection{Confusion Matrix}
+%To assess the classification performance of our model, we conducted K-Fold Cross-Validation, generating confusion matrices for each fold.
+
+To assess the classification performance the K-Fold Cross-Validation was used, generating confusion matrices for each fold. Figure \ref{fig:confmatrix} presents the results, illustrating how the model predicts each gesture and highlighting cases of misclassification. A confusion matrix provides insights into classification accuracy and error distribution, with correctly classified gestures appearing along the diagonal, while off-diagonal elements represent misclassifications. The color intensity in the matrices indicates the frequency of predictions, where darker shades correspond to higher values.
+
+The results show how the model achieves high classification accuracy since most values are concentrated along the diagonal, meaning that the predicted labels align well with the actual ones. However, some specific gestures exhibit recurrent misclassifications across multiple folds, suggesting the presence of systematic errors. These errors could stem from similar motion trajectories, overlapping hand shapes, or occlusions that reduce the model’s ability to distinguish between certain gestures. In particular, signs that share structural similarities often lead to false positives, which can impact real-world usability.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{confusion_ma.png}
+    \caption{Confusion matrices obtained from cross-validation.}
+    \label{fig:confmatrix}
+\end{figure}
+
+Understanding these misclassification patterns is crucial for improving recognition accuracy. By identifying which gestures are most frequently confused, we can explore techniques such as data augmentation, more robust temporal modeling, or integrating multimodal cues like facial expressions and body posture.
+
+
+\subsection{Specificity by Class}
+
+Beyond overall accuracy, it is essential to evaluate the specificity of each class, which measures the ability to distinguish a given sign from all others. Figure \ref{fig:specificity} presents the specificity scores across different folds, offering deeper insights into how well the model generalizes across different signs. High specificity values indicate that a class is rarely misclassified, whereas lower specificity suggests that a particular sign is frequently confused with others.
+
+The analysis reveals that most classes achieve a specificity close to 1.0, which means they are well-separated from other signs in the dataset. However, some gestures exhibit lower specificity scores, highlighting a tendency for the model to misinterpret them. These lower values typically occur in gestures with similar hand configurations or motion patterns, reinforcing the need for a more refined approach to feature extraction. Moreover, the variation in specificity across different folds suggests that some gestures are inherently harder to distinguish, regardless of the training subset used.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{specificity_scores.png}
+    \caption{Specificity scores per class across different cross-validation folds.}
+    \label{fig:specificity}
+\end{figure}
+
+By analyzing specificity per class, we gain valuable insights into which signs require further improvement in recognition accuracy. This evaluation allows us to pinpoint weaknesses in the model and explore potential solutions, such as introducing more training examples for ambiguous signs, fine-tuning the deep learning architecture, or employing alternative machine learning techniques to enhance classification robustness. Ultimately, specificity analysis serves as a critical step in refining the performance of the PSL recognition system and ensuring its reliability for practical applications.
+
+\subsection{ROC Curve and AUC}
+ The Receiver Operating Characteristic (ROC) curves are a fundamental tool for evaluating the classification performance of machine learning models. These curves illustrate the trade-off between the true positive rate (sensitivity) and the false positive rate (1-specificity) across different classification thresholds. The area under the curve (AUC) quantifies the model's ability to distinguish between classes, where a value of 1.0 indicates perfect classification and 0.5 represents a performance equivalent to random guessing.
+
+Figure \ref{fig:roc_fold1} presents the ROC curves obtained during the first fold of cross-validation. Each subplot corresponds to a specific class, showing the model's ability to distinguish that class from the rest. Most curves exhibit a near-perfect AUC, suggesting strong discriminative power. However, slight deviations from the ideal curve may indicate some degree of misclassification in particular classes.
+
+Similarly, Figure \ref{fig:roc_fold2} depicts the ROC curves from the second fold validation. The consistency of high AUC values across folds suggests the model generalizes well across different subsets of the dataset. Any discrepancies observed between the folds may be due to variations in the training data distribution or inherent challenges in classifying certain classes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{roc_fold1.jpg}
+    \caption{ROC curves for the first fold validation.}
+    \label{fig:roc_fold1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{roc_fold2.jpg}
+    \caption{ROC curves for the second fold validation.}
+    \label{fig:roc_fold2}
+\end{figure}
+
+The analysis of these curves reveals that the model achieves near-perfect classification in most cases, as indicated by the ROC curves approaching the upper-left corner of the plot. Some minor deviations in specific classes suggest further fine-tuning, such as adjusting hyperparameters or incorporating additional training data to improve classification robustness.
+
+% Sección tabla de validacion de Señas Peruanas con metricas
+\subsection{Performance Metrics for Each Fold}
+The performance metrics for each fold in the cross-validation are shown in Table \ref{tab:performance_metrics}. The metrics include Accuracy, Precision, Recall, F1-Score, Matthews Correlation Coefficient (MCC), Balanced Accuracy, and Cohen's Kappa. These metrics show an evaluation of the model's performance across multiple folds. In which the proposed model demonstrates consistent performance with high values across all metrics. Fold 3 achieves the best performance, with values close to 99\% in Accuracy, Precision, Recall, and F1-Score, hence the model is particularly accurate and reliable in this fold. In contrast, Fold 2 exhibits slightly lower performance, with the lowest Precision and Recall values of 93.5\% and 93.365\%, respectively, which could suggest that the data in this fold posed more challenges for the model.
+
+The average values across all folds reflect an overall strong performance, with an average Accuracy of 97.5\% and F1-Score of 97.3\%. The MCC, Balanced Accuracy, and Cohen’s Kappa also show strong results, all indicating that the model maintains a balanced and reliable performance across different subsets of data. 
+
+This consistent performance suggests that the model is robust and performs well under various data conditions, with only slight variations between folds. These results further emphasize the model’s effectiveness and stability, making it a promising tool for classification tasks.
+%tabla de fold- metricas
+\begin{table}[h]
+    \centering
+     \resizebox{\textwidth}{!}{
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        Fold & Accuracy (\%) & Precision (\%) & Recall (\%) & F1-Score (\%) & MCC & Balanced Accuracy & Cohen's Kappa \\
+        \hline
+        1 & 96.02 & 96.98 & 96.02 & 95.994 & 95.859 & 96.508 & 95.799 \\
+        2 & 93.5 & 93.365 & 93.5 & 92.627 & 93.301 & 92.017 & 93.124 \\
+        3 & 99.0 & 99.087 & 99.0 & 98.998 & 98.951 & 99.06 & 98.945 \\
+        4 & 99.5 & 99.029 & 99.5 & 99.258 & 99.472 & 95.0 & 99.469 \\
+        5 & 99.5 & 99.545 & 99.5 & 99.501 & 99.473 & 99.583 & 99.471 \\
+        \hline
+        Average & 97.504 & 97.601 & 97.504 & 97.276 & 97.411 & 96.434 & 97.362 \\
+        \hline
+    \end{tabular}}
+    
+    \caption{Performance metrics for each fold in cross-validation.}
+    \label{tab:performance_metrics}
+\end{table}
+
+
+
+
+
+% Seccion de Posibles mal interpretaciones y confusiones entre lenguajes de seña similares
+
+
+\subsection{Comparison with Baseline Models}
+
+Table~\ref{tab:comparison} presents a comparative analysis of various sign language recognition models based on their architecture and dataset characteristics. Previous works primarily focused on static or small-scale datasets, often limited to a fixed number of signs or letters. Most of these approaches rely on CNN-based architectures, with some integrating recurrent neural networks such as LSTMs for temporal feature extraction.
+
+In contrast, our proposed model introduces a real-time recognition system specifically designed for Peruvian Sign Language (PSL). A key contribution of this work is the creation of a dataset consisting of 20 dynamic signs, where each sign is captured in real-time, and its keypoints are extracted using the MediaPipe framework. This method allows for a more natural and fluid representation of sign language movements compared to static image-based approaches.
+
+By leveraging a combination of MediaPipe for keypoint detection and LSTM networks for sequence modeling, our approach effectively captures temporal dependencies in sign language gestures. This improves the accuracy of recognition while maintaining computational efficiency, making it suitable for real-time applications.
+
+
+
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{ % Ajusta el ancho al de la página
+    \begin{tabular}{l l l l}
+        \hline
+        \textbf{References} & \textbf{Model Architecture} & \textbf{Sign Language} & \textbf{Dataset Size} \\
+        \hline
+        \cite{Yasmin} & Multi-headed CNN & American Sign Language (ASL) & 24 letters  \\
+        \cite{Arooj24} & CNN & Pakistan Sign Language (PSL) & 26 signs  \\
+        \cite{Lu23} & CNN-BiLSTM & Japanese Sign Language (JSL) & 32 signs \\
+        \cite{Rao} & LSTM + MediaPipe & American Sign Language (ASL) & Video-based  \\
+        \cite{Shamitha} & LSTM & Indian Sign Language (ISL) & 24 dynamic gestures  \\
+        \cite{Paul24} & ResNet + LSTM & American Sign Language (ASL) & 26 signs; 3 symbols  \\
+        \textbf{Proposed method} & \textbf{Mediapipe + LSTM} & \textbf{Peruvian Sign Language (PSL)} & \textbf{20 dynamic signs}  \\
+        \hline
+    \end{tabular}
+    }
+    \caption{Comparative analysis of sign language recognition models based on architecture and dataset characteristics.}
+    \label{tab:comparison}
+\end{table}
+
+
+
+Table~\ref{tab:comparison2} compares sign language recognition models based on their architecture, type of recognition (static or dynamic), and reported accuracy. Static recognition models typically classify isolated signs from still images, making them effective for letter-based sign language alphabets but less suited for continuous signing. 
+
+Dynamic models, on the other hand, process sequences of frames, enabling the recognition of gestures that evolve over time. These models are more complex as they require tracking movement patterns, often using temporal models like LSTMs. Our proposed approach falls into this category, leveraging MediaPipe for real-time keypoint extraction and LSTM networks for sequence modeling.
+
+
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{ % Ajusta el ancho de la tabla automáticamente
+    \begin{tabular}{l l l l}
+        \hline
+        \textbf{References} & \textbf{Model Architecture} & \textbf{Recognition Type} & \textbf{Accuracy (\%)} \\
+        \hline
+        \cite{Yasmin} & Multi-headed CNN & Static & 92.4 \\
+        \cite{Arooj24} & CNN & Static & 94.1 \\
+        \cite{Lu23} & CNN-BiLSTM & Static & 90.8 \\
+        \cite{Rao} & LSTM + MediaPipe & Dynamic & 87.5 \\
+        \cite{Shamitha} & LSTM & Dynamic & 89.6 \\
+        \cite{Paul24} & ResNet + LSTM & Static & 95.3 \\
+        \hline
+        \textbf{Proposed method} & \textbf{Mediapipe + LSTM} & \textbf{Dynamic} & \textbf{97.5} \\
+        \hline
+    \end{tabular}
+    }
+    \caption{Comparison of sign language recognition models based on architecture, type of recognition, and accuracy.}
+    \label{tab:comparison2}
+\end{table}
+
+\section{Conclusions}
+\label{sec:conclusions}
+The proposed model, based on LSTM and MediaPipe, achieved competitive performance in recognizing Peruvian Sign Language (PSL), reaching an accuracy of 97.5\%, precision of 97.6\%, recall of 97.5\%, and an F1-score of 97.2\%. While these results are slightly lower than those of models for more widely studied sign languages, they highlight the effectiveness of the methodology in a low-resource context. The combination of MediaPipe for keypoint detection and LSTM for temporal dependency modeling proved effective in capturing both spatial and sequential aspects of gestures.  
+
+However, some limitations were identified, particularly regarding the size and diversity of the dataset, which may affect the model’s generalization to unseen users and varying environmental conditions. Additionally, while the model performs well for static gestures and simple dynamic gestures, it struggles with more complex or rapid movements. Future work could focus on optimizing the model for real-time applications by implementing it on dedicated hardware such as edge devices or GPUs, which could improve both latency and computational efficiency. Exploring hardware acceleration techniques, such as TensorRT or TPU integration, may further enhance performance in real-world deployments.  
+
+This study underscores the importance of developing technological solutions for low-resource sign languages, promoting social inclusion and accessibility for the deaf community in Peru. The proposed model provides a framework adaptable to other underrepresented sign languages, fostering innovation in this field. Despite existing challenges, the achieved results lay the foundation for future improvements in PSL recognition and the development of more inclusive and effective communication technologies.
+
+\newpage
+\bibliographystyle{plainnat}
+\begin{thebibliography}{00} %%Poner formato IEEE con template 
+
+%% For authoryear reference style
+%% \bibitem[Author(year)]{label}
+%% Text of bibliographic item
+%%Introduccion
+\bibitem[Kumari and Anand, 2024]{Kumari24}
+D. Kumari and R. S. Anand, 
+\textit{Isolated Video-Based Sign Language Recognition Using a Hybrid CNN-LSTM Framework Based on Attention Mechanism}, 
+Electronics, vol. 13, pp. 1229, 2024. 
+
+\bibitem[P. Mali et al., 2023]{Mali23}
+P. Mali, A. Shakya, and S. P. Panday, 
+\textit{Sign Language Recognition Using Long Short-Term Memory Deep Learning Model}, 
+Advances in Artificial Intelligence, vol. 13, pp. 1229, 2023. 
+
+\bibitem[A. Sharma et al., 2020]{Sharma20}
+A. Sharma, A. Mittal, and S. Singh, 
+\textit{Hand Gesture Recognition Using Image Processing and Feature Extraction Techniques}, 
+in \textit{Proceedings of the International Conference on Smart Sustainable Intelligent Computing and Applications}, 
+Springer, 2020.
+
+\bibitem[C. Lugaresi et al., 2019]{lugaresi19}
+C. Lugaresi, J. Tang, H. Nash, C. McClanahan, E. Uboweja, M. Hays, F. Zhang, C.-L. Chang, M. G. Yong, J. Lee, W.-T. Chang, W. Hua, M. Georg, and M. Grundmann, 
+\textit{MediaPipe: A Framework for Building Perception Pipelines}, 
+arXiv preprint, 2019. 
+
+\bibitem[Z. Zhang and D. Johnson, 2020]{zhang20}
+Z. Zhang and D. Johnson, 
+\textit{Mediapipe Hands: Real-Time and Cross-Platform Hand Tracking Framework}, 
+in \textit{ACM International Conference on Human-Computer Interaction}, 2020.
+
+\bibitem[Y. Cai and M. Thompson, 2021]{cai21}
+Y. Cai and M. Thompson, 
+\textit{Emotion Recognition Using Facial Landmarks with Mediapipe Framework}, 
+IEEE Transactions on Affective Computing, 2021.
+
+\bibitem[Mediapipe Pose Team, 2021]{mediapipe21}
+Mediapipe Pose Team, 
+\textit{Mediapipe Pose: A Human Body Pose Detection Framework for Fitness Applications}, 
+Google AI Blog, 2021.
+
+\bibitem[D. Arellano, 2022]{arellano22}
+D. Arellano, 
+\textit{Peruvian Sign Language Recognition Using Recurrent Neural Networks}, 
+master's thesis, Universidad Peruana de Ciencias Aplicadas (UPC), Lima, Peru, 2022.
+
+\bibitem[G. Portocarrero-Banda et al., 2023]{portocarrero23}
+G. Portocarrero-Banda et al., 
+\textit{Static Peruvian Sign Language Classifier Based on Manual Spelling Using a Convolutional Neural Network}, 
+CEUR Workshop Proceedings, 2023.
+
+\bibitem[S. Siddique et al., 2023]{siddique23}
+S. Siddique et al., 
+\textit{Deep Learning-based Bangla Sign Language Detection with an Edge Device}, 
+Intelligent Systems with Applications, 2023.
+
+\bibitem[R. C. Hankins, 2015]{hankins15}
+R. C. Hankins, 
+\textit{Social Interaction Between Deaf and Hearing People}, 
+master's thesis, University of Mississippi, Honors Thesis, 2015.
+
+\bibitem[U. Zeshan, 2006]{zeshan06}
+U. Zeshan, 
+\textit{Sign Languages of the World}, 
+in \textit{Encyclopedia of Language \& Linguistics (Second Edition)}, 
+ed. Keith Brown, Elsevier, pp. 358-365, 2006.
+
+\bibitem[B. Berrú-Novoa et al., 2018]{berru18}
+B. Berrú-Novoa, R. González-Valenzuela, and P. Shiguihara-Juárez, 
+\textit{Peruvian sign language recognition using low resolution cameras}, 
+IEEE, 2018.
+
+\bibitem[R. M. Madrid Vega, 2018]{madrid18}
+R. M. Madrid Vega, 
+\textit{Classifiers in Peruvian Sign Language (LSP)}, 
+master's thesis, Pontificia Universidad Católica del Perú, 2018.
+
+\bibitem[J. Elizabeth and J. Parks, 2010]{elizabeth10}
+J. Elizabeth and J. Parks, 
+\textit{A Sociolinguistic Profile of the Peruvian Deaf Community}, 
+Sign Language Studies, vol. 10, no. 4, pp. 409--441, 2010.
+
+\bibitem[M. Rodríguez Mondonedo and A. Arnaiz, 2015]{rodriguez15}
+M. Rodríguez Mondonedo and A. Arnaiz, 
+\textit{Repository of Peruvian Sign Language}, 
+master's thesis, Pontificia Universidad Católica del Perú, 2015.
+
+\bibitem[C. Lazo et al., 2019]{lazo19}
+C. Lazo, Z. Sanchez, and C. del Carpio, 
+\textit{A Static Hand Gesture Recognition for Peruvian Sign Language Using Digital Image Processing and Deep Learning}, 
+in \textit{Proc. 4th Brazilian Technology Symposium (BTSym'18)}, Springer, Cham, pp. 281--290, 2019.
+
+\bibitem[J. E. Mejía Gamarra et al., 2020]{mejia20}
+J. E. Mejía Gamarra, M. A. Salazar Cubas, J. D. Sosa Silupú, and C. E. Córdova Chirinos, 
+\textit{Prototype for Peruvian Sign Language Translation Based on an Artificial Neural Network Approach}, 
+in \textit{2020 IEEE XXVII International Conference on Electronics, Electrical Engineering and Computing (INTERCON)}, pp. 1--4, 2020.
+
+\bibitem[R. Nurena-Jara et al., 2020]{nurena20}
+R. Nurena-Jara, C. Ramos-Carrion, and P. Shiguihara-Juárez, 
+\textit{Data Collection of 3D Spatial Features of Gestures from Static Peruvian Sign Language Alphabet for Sign Language Recognition}, 
+in \textit{2020 IEEE Engineering International Research Conference (EIRCON)}, pp. 1--4, 2020.
+
+\bibitem[G. P. Gamarra Ramos et al., 2020]{gamarra20} textit{Translator System for Peruvian Sign Language Texts Through 3D Virtual Assistant}, 
+International Journal of Advanced Computer Science and Applications, vol. 11, no. 1, 2020.
+
+
+\bibitem[MIMP(2017)]{MIMP}
+   Ministerio de la Mujer y Poblaciones Vulnerables (MIMP),
+   \textit{Decreto Supremo que aprueba el reglamento de la Ley N° 29535, Ley que otorga reconocimiento oficial a la lengua de señas peruana},
+   Gobierno del Perú, 2017. Disponible en: \url{https://www.mimp.gob.pe} 
+%% Relate Work
+\bibitem[S. Yasmin et al.(2023)]{Yasmin}
+  S. Yasmin, et al.,
+  \textit{A multi-headed convolutional neural network (CNN) model for sign language recognition},
+  Journal of Artificial Intelligence and Robotics, 2023.
+
+
+
+
+  
+%si esta hasta aqui
+\bibitem[Sadia Arooj et al.(2023)]{Arooj24}
+  Sadia Arooj, Saud Altaf, Shafiq Ahmad, Haitham Mahmoud and Adamali Shah Noor Mohamed
+  \textit{Enhancing sign language recognition using CNN and SIFT: A case study on Pakistan sign language},
+  Journal of King Saud University - Computer and Information Sciences,2024.
+  
+\bibitem[Chenghong Lu et al.(2023)]{Lu23}
+  Chenghong Lu , Misaki Kozakai and Lei Jing 
+  \textit{Sign Language Recognition with Multimodal Sensors and Deep
+Learning Methods},
+  Electronics, 2023.
+  
+\bibitem[Harsh Kumar Vashisth et al.(2023)]{Vashisth23}
+  Harsh Kumar Vashisth, Tuhin Tarafder, Rehan Aziz, Mamta Arora and Alpana
+  \textit{Hand Gesture Recognition in Indian Sign Language Using
+Deep Learning},
+  Engineering Proceedings, 2023.
+  
+  \bibitem[Subrata Kumer Paul et al.(2024)]{Paul24}
+  Subrata Kumer Paul, Md. Abul Ala Walid, Rakhi Rani Paul, Md. Jamal Uddin, Md. Sohel Rana, Maloy Kumar Devnath, Ishaat Rahman Dipu, Md. Momenul Haque
+  \textit{An Adam based CNN and LSTM approach for sign language recognition in real time for deaf people},
+  Bulletin of Electrical Engineering and Informatics, 2024.
+
+\bibitem[Deep Kothadiya et al.(2022)]{Kothadiya22}
+  Deep Kothadiya, Chintan Bhatt, Krenil Sapariya, Kevin Patel, Ana-Belén Gil-González and Juan M. Corchado
+  \textit{Deepsign: Sign Language Detection and Recognition Using
+Deep Learning},
+  Electronics, 2022.
+
+\bibitem[Sundar Ba and Bagyammal T (2022)]{Sundar}
+  Sundar Ba and Bagyammal T
+  \textit{American Sign Language Recognition for Alphabets Using
+MediaPipe and LSTM MediaPipe and LSTM},
+  4th International Conference on Innovative Data Communication Technology and Application, 2022.
+
+\bibitem[Reham Mohamed Abdulhamied et al.(2023)]{Abdulhamied}
+  Reham Mohamed Abdulhamied, Mona M. Nasr, Sarah N. Abdulkader
+  \textit{Real-time recognition of American sign language using long-
+short term memory neural network and hand detection},
+  Indonesian Journal of Electrical Engineering and Computer Science, 2023.
+
+\bibitem[G. Mallikarjuna Rao et al.(2023)]{Rao}
+  G. Mallikarjuna Rao, Cheguri Sowmy, Dharavath Mamatha
+  \textit{Sign Language Recognition using LSTM and Media Pipe},
+  7th International Conference on Intelligent Computing and Control Systems, 2023.
+  
+\bibitem[Shamitha S H et al.(2023)]{Shamitha}
+  Shamitha S H, Dr. Badarinath K
+  \textit{Sign Language Recognition Utilizing LSTM And
+Mediapipe For Dynamic Gestures Of ISL},
+  International Journal for Multidisciplinary Research, 2023.
+
+\bibitem[Nehal F. Attia et al.(2023)]{Attia}
+   Nehal F. Attia, Mohamed T. Faheem Said Ahmed, Mahmoud A.M. Alshewimy 
+  \textit{Efficient deep learning models based on tension techniques for sign language recognition},
+  Intelligent Systems with Applications, 2023.
+
+  
+%%%DATASET
+\bibitem[Ministerio de Educación del Perú(2015)]{Minedu}
+   Ministerio de Educación del Perú, 
+   \textit{Repositorio Institucional del Ministerio de Educación del Perú}, Capítulo XXIV: Señas de Informática, 
+   2015.
+    [Accessed: Jan. 14, 2025].
+
+\bibitem[Arezoo et al., 2023]{Arezoo}
+  Arezoo Sadeghzadeha, A. F. M. Shahen Shah, Md Baharul Islam,
+  \textit{MLMSign: Multi-lingual multi-modal illumination-invariant sign language recognition},
+  Intelligent Systems with Applications, 2024.
+%aqui esta
+\bibitem[Mienye and Swart, 2024]{Mienye24}
+  Ibomoiye Domor Mienye and Theo G. Swart,
+  \textit{A Comprehensive Review of Deep Learning: Architectures, Recent Advances, and Applications},
+  Information, 2024, 15, 755.
+  https://doi.org/10.3390/info15120755.
+
+\bibitem[Powers, 2011]{Powers11}
+  Powers, D. M. W.,
+  \textit{Evaluation: From Precision, Recall and F-Measure to ROC, Informedness, Markedness \& Correlation},
+  Journal of Machine Learning Technologies, 2011, 2(1), 37–63.
+
+\bibitem[Good, 1952]{Good52}
+  Good, I. J.,
+  \textit{Rational Decisions},
+  Journal of the Royal Statistical Society: Series B (Methodological), 1952, 14(1), 107–114.
+
+\bibitem[Matthews, 1975]{Matthews75}
+  Matthews, B. W.,
+  \textit{Comparison of the predicted and observed secondary structure of T4 phage lysozyme},
+  Biochimica et Biophysica Acta (BBA)-Protein Structure, 1975, 405(2), 442–451.
+
+\bibitem[Brodersen et al., 2010]{Brodersen10}
+  Brodersen, K. H., Ong, C. S., Stephan, K. E., \& Buhmann, J. M.,
+  \textit{The balanced accuracy and its posterior distribution},
+  Proceedings of the 20th International Conference on Pattern Recognition (ICPR), 2010, 3121–3124.
+
+\bibitem[Cohen, 1960]{Cohen60}
+  Cohen, J.,
+  \textit{A Coefficient of Agreement for Nominal Scales},
+  Educational and Psychological Measurement, 1960, 20(1), 37–46.
+
+\bibitem[Altman and Bland, 1994]{Altman94}
+  Altman, D. G., \& Bland, J. M.,
+  \textit{Diagnostic tests 1: Sensitivity and specificity},
+  BMJ, 1994, 308(6943), 1552.
+
+\bibitem[Hanley and McNeil, 1982]{Hanley82}
+  Hanley, J. A., \& McNeil, B. J.,
+  \textit{The meaning and use of the area under a receiver operating characteristic (ROC) curve},
+  Radiology, 1982, 143(1), 29–36.
+
+
+\end{thebibliography}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
+
+
